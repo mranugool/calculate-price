@@ -51,7 +51,7 @@
             <select id="jform_invoices_tax_rate" class="calculate">
                 <option value="0">NON TAX</option>
                 <option value="1">1%</option>
-                <option value="1.5" selected="selected">1.5%</option>
+                <option value="1.5">1.5%</option>
                 <option value="2">2%</option>
                 <option value="2.5">2.5%</option>
                 <option value="3">3%</option>
@@ -93,7 +93,13 @@
         var sum_price       = price*quantity;
         var sum_vat         = (sum_price*vat_rate)/100;
         var sum_total       = sum_price+sum_vat;
-        var sum_tax         = (sum_price*tax_rate)/100;
+        
+        if(sum_price >= '1000' ){
+            var sum_tax = (sum_price*tax_rate)/100;
+        }else{
+            var sum_tax = '0' 
+        }
+        
         var sum_grand_total = sum_total-sum_tax;
 
         $('#jform_invoices_vat').val(sum_vat);
