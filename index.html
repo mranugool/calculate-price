@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Calculate Price</title>
+  <style>
+
+  </style>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td>Price :</td>
+        <td><input type="text" id="jform_invoices_price" class="calculate isprice"></td>
+    </tr>
+    <tr>
+        <td>Quantity :</td>
+        <td><input type="text" id="jform_invoices_quantity" class="calculate isprice"></td>
+    </tr>
+    <tr>
+        <td>VAT Rate :</td>
+        <td> 
+            <select id="jform_invoices_vat_rate" class="calculate">
+                <option value="0">NON VAT</option>
+                <option value="1">1%</option>
+                <option value="2">2%</option>
+                <option value="3">3%</option>
+                <option value="4">4%</option>
+                <option value="5">5%</option>
+                <option value="6">6%</option>
+                <option value="7">7%</option>
+                <option value="8">8%</option>
+                <option value="9">9%</option>
+                <option value="10">10%</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>VAT :</td>
+        <td><input type="text" id="jform_invoices_vat" class="calculate isprice"></td>
+    </tr>
+    <tr>
+        <td>Total :</td>
+        <td><input type="text" id="jform_invoices_total" class="calculate isprice"></td>
+    </tr>
+    <tr>
+        <td>TAX Rate :</td>
+        <td>
+            <select id="jform_invoices_tax_rate" class="calculate">
+                <option value="0">NON TAX</option>
+                <option value="1">1%</option>
+                <option value="1.5" selected="selected">1.5%</option>
+                <option value="2">2%</option>
+                <option value="2.5">2.5%</option>
+                <option value="3">3%</option>
+                <option value="3.5">3.5%</option>
+                <option value="4">4%</option>
+                <option value="4.5">4.5%</option>
+                <option value="5">5%</option>
+                <option value="5.5">5.5%</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Withhold TAX :</td>
+        <td><input type="text" id="jform_invoices_withhold_tax" class="calculate"></td>
+    </tr>
+    <tr>
+        <td>Grand Total :</td>
+        <td><input type="text" id="jform_invoices_grand_total" class="calculate"></td>
+    </tr>
+</table>
+
+
+
+
+ 
+<script>
+    
+    $('.calculate').on( "keyup change", function() {
+
+        var price           = $('#jform_invoices_price').val();
+        var quantity        = $('#jform_invoices_quantity').val();
+        var vat_rate        = $('#jform_invoices_vat_rate').val();
+        var vat             = $('#jform_invoices_vat').val();
+        var total           = $('#jform_invoices_total').val();
+        var tax_rate        = $('#jform_invoices_tax_rate').val();
+        var withhold_tax    = $('#jform_invoices_withhold_tax').val();
+        var grand_total     = $('#jform_invoices_grand_total').val();
+
+        var sum_price       = price*quantity;
+        var sum_vat         = (sum_price*vat_rate)/100;
+        var sum_total       = sum_price+sum_vat;
+        var sum_tax         = (sum_price*tax_rate)/100;
+        var sum_grand_total = sum_total-sum_tax;
+
+        $('#jform_invoices_vat').val(sum_vat);
+        $('#jform_invoices_total').val(sum_total);
+        $('#jform_invoices_withhold_tax').val(sum_tax);
+        $('#jform_invoices_grand_total').val(sum_grand_total);
+
+
+
+
+    });
+
+    $('.isprice').keyup(function(e){
+
+    });
+</script>
+ 
+</body>
+</html>
