@@ -1,0 +1,11 @@
+---
+application:
+  name: "calculate-price"
+  project: "gggg"
+  organization: "QoveryCommunity"
+routers:
+- name: "main-calculate-price"
+  routes:
+  - application_name: "calculate-price"
+    paths:
+    - "/*"
